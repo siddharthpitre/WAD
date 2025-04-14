@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registered Users</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef1f5;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .user-list {
+      max-width: 600px;
+      margin: auto;
+    }
+    .user-card {
+      background-color: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #3498db;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h2>Registered Users</h2>
+  <div class="user-list" id="userList"></div>
+  <a href="registration.html">← Back to Registration</a>
+
+  <script>
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const userListDiv = document.getElementById('userList');
+
+    users.forEach((user, index) => {
+      const card = document.createElement('div');
+      card.className = 'user-card';
+      card.innerHTML = `
+        <strong>User ${index + 1}</strong><br>
+        <strong>Name:</strong> ${user.name}<br>
+        <strong>Email:</strong> ${user.email}<br>
+        <strong>DOB:</strong> ${user.dob}<br>
+        <strong>Mobile:</strong> ${user.mobile}<br>
+        <strong>College ID:</strong> ${user.collegeId}
+      `;
+      userListDiv.appendChild(card);
+    });
+  </script>
+</body>
+</html>
